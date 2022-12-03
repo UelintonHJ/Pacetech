@@ -1,123 +1,81 @@
-package ConversorTemperaturaMoeda;
+package ProjetoSemana7;
 
-import java.util.Scanner;
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public class Main {
 
-    @SuppressWarnings({"empty-statement", "UnusedAssignment"})
     public static void main(String[] args) {
+        Empregado funcionario = new Empregado("Não Cadastrado", 
+                "Não Cadastrado", 0.0f);
+        Empregado chefeRecepcao = new Empregado("Alphonse", "Capone", 1500.00f);
+        Empregado chefeSeguranca = new Empregado("Carlo", "Gambino", 1650.00f);
+        
         Scanner leia = new Scanner(System.in);
         DecimalFormat df = new DecimalFormat("0.00");
-        int opcaoTemp = 0, opcaoMoeda = 0, opcaoMenu = 0;
-        float tempC, tempF, cotacaoDolar, moedaR, moedaD;
-
-        System.out.println("BEM- VINDO AO SEU NOVO CONVERSOR AGORA EM JAVA");
-        System.out.println("Antes de iniciar suas conversões lembre-se:");
-        System.out.println("Use somente vírgula para separar as casas decimais."
-                );
-        System.out.print("\n");
+        
+        int opcaoMenu = 0, opcaoCadastro = 0, opcaoSetor = 0;
 
         do {
-            System.out.println("       Menu Inicial");
-            System.out.println("O que você deseja fazer?");
-            System.out.println("1 - Converter Temperatura");
-            System.out.println("2 - Converter Moeda");
-            System.out.println("3 - Sair do Programa");
+            System.out.println("Cadastro de funcionários");
+            System.out.println("1 - Cadastrar novo funcionário");
+            System.out.println("2 - Funcionários cadastrados");
+            System.out.println("3 - Sair");
             opcaoMenu = leia.nextInt();
-            System.out.print("\n");
+            System.out.println(" ");
             switch (opcaoMenu) {
-
-                case 1: {
-                    System.out.println("Qual conversão você deseja realizar?");
-                    System.out.println("1 - Converter Celsius para Fahrenheit");
-                    System.out.println("2 - Converter Fahrenheit para Celsius");
-                    System.out.println("3 - Voltar ao Menu Inicial");
-                    opcaoTemp = leia.nextInt();
-                    System.out.print("\n");
-                    switch (opcaoTemp) {
-                        case 1:
-                            System.out.println("Digite a temperatura em Celsius"
-                                    + " a ser convertida:");
-                            tempC = leia.nextFloat();
-                            tempF = tempC * 1.8f + 32;
-                            System.out.println(df.format(tempC) + "°C "
-                                    + "convertida para Fahrenheit é "
-                                    + df.format(tempF) + "°F");
-                            System.out.print("\n");
-                            break;
-
-                        case 2:
-                            System.out.println("Digite a temperatura em "
-                                    + "Fahrenheit a ser convertida");
-                            tempF = leia.nextFloat();
-                            tempC = (tempF - 32) / 1.8f;
-                            System.out.println(df.format(tempF) + "°F "
-                                    + "convertida para Fahrenheit é "
-                                    + df.format(tempC) + "°C");
-                            System.out.print("\n");
-                            break;
-
-                        case 3:
-                            opcaoTemp = opcaoMenu;
-                            System.out.print("\n");
-                            break;
-
-                    }
-
-                }
-                break;
-
-                case 2: {
-                    System.out.println("Qual conversão você deseja realizar?");
-                    System.out.println("1 - Converter Reais para Dólar");
-                    System.out.println("2 - Converter Dólar para Reais");
-                    System.out.println("3 - Voltar ao Menu Inicial");
-                    opcaoMoeda = leia.nextInt();
-                    System.out.print("\n");
-                    switch (opcaoMoeda) {
-                        case 1:
-                            System.out.println("Qual a cotação atual do "
-                                    + "Dólar?");
-                            cotacaoDolar = leia.nextFloat();
-                            System.out.println("Qual o valor em reais que você "
-                                    + "deseja converter?");
-                            moedaR = leia.nextFloat();
-                            moedaD = moedaR / cotacaoDolar;
-                            System.out.println("R$" + df.format(moedaR) + " "
-                                    + "convertido na cotação de US$" + 
-                                    df.format(cotacaoDolar) + " passa a valer "
-                                            + "US$" + df.format(moedaD));
-                            System.out.print("\n");
-                            break;
-
-                        case 2:
-                            System.out.println("Qual a cotação atual do "
-                                    + "Dólar?");
-                            cotacaoDolar = leia.nextFloat();
-                            System.out.println("Qual o valor em Dólar que "
-                                    + "você deseja converter?");
-                            moedaD = leia.nextFloat();
-                            moedaR = moedaD * cotacaoDolar;
-                            System.out.println("US$" + df.format(moedaD) + 
-                                    " convertido na cotação de US$" 
-                                    + df.format(cotacaoDolar) + 
-                                    " passa a valer R$" + df.format(moedaR));
-                            System.out.print("\n");
-                            break;
-
-                        case 3:
-                            opcaoTemp = opcaoMenu;
-                            System.out.print("\n");
-                            break;
-
-                    }
+                case 1:
+                    System.out.println("--Cadastrar Novo Funcionário--");
+                    System.out.println("Digite o Primeiro Nome: ");
+                    funcionario.setPrimeiroNome(leia.next());
+                    System.out.println("Digite o Sobrenome: ");
+                    funcionario.setSobrenome(leia.next());
+                    System.out.println("Digite o Valor do Salário Mensal: ");
+                    funcionario.setSalarioMensal(leia.nextFloat());
+                    System.out.println("Novo funcionário: " 
+                            + funcionario.getPrimeiroNome() + " " 
+                            + funcionario.getSobrenome() + ", que receberá R$ " 
+                            + df.format(funcionario.getSalarioMensal())
+                            + "/mês, cadastrado com sucesso.");
+                    System.out.println(" ");
                     break;
-                }
-                case 3: {
-                    System.exit(0);
+
+                case 2:
+                    System.out.println("--Funcionários Cadastrados--");
+                    System.out.println("Nome Completo: " 
+                            + chefeRecepcao.nomeCompleto());
+                    System.out.println("Salário Mensal: R$ " 
+                            + df.format(chefeRecepcao.getSalarioMensal()));
+                    System.out.println("Salário Anual foi Reajustado de: R$ " 
+                            + df.format(chefeRecepcao.salarioAnual()) 
+                            + " para R$ " 
+                            + df.format(chefeRecepcao.salarioAnualReajustado())
+                    );
+                    System.out.println(" ");
+                    System.out.println("Nome Completo: " 
+                            + chefeSeguranca.nomeCompleto());
+                    System.out.println("Salário Mensal: R$ " 
+                            + df.format(chefeSeguranca.getSalarioMensal()));
+                    System.out.println("Salário Anual foi Reajustado de: R$ " 
+                            + df.format(chefeSeguranca.salarioAnual()) 
+                            + " para R$ " 
+                            + df.format(chefeSeguranca.salarioAnualReajustado())
+                    );
+                    System.out.println(" ");
+                    System.out.println("Nome Completo: " 
+                            + funcionario.nomeCompleto());
+                    System.out.println("Salário Mensal: R$ " 
+                            + df.format(funcionario.getSalarioMensal()));
+                    System.out.println("Salário Anual foi Reajustado de: R$ " 
+                            + df.format(funcionario.salarioAnual()) 
+                            + " para R$ " 
+                            + df.format(funcionario.salarioAnualReajustado()));
+                    System.out.println(" ");
                     break;
-                }
+
+                default:
+                    System.out.println("Opção Inválida!");
+                    break;
             }
 
         } while (opcaoMenu != 3);
